@@ -38,16 +38,10 @@ public class Equipment
      * Constructor for Equipment. Takes in information on the Equipment as a comma delimited string,
      * stores info on name, count, totalWeight, totalPrice, and its description. Note that the name and count
      * are separated by a comma, not a forward slash.
-     *
-     * @param strg Information about the Equipment in the format:
-     * 	"name/count,totalWeight,totalPrice,description"
-     * The description will not contain any commas or forward-slashes.
-     * The count is an integer value.
      */
     public Equipment(String strg)
     {
         String[] tokens = strg.split(",");
-
         String[] idinfo = tokens[0].split("/");
         this.name = idinfo[0];
         this.count = Integer.parseInt(idinfo[1]);
@@ -123,7 +117,13 @@ public class Equipment
         Equipment otherEq = (Equipment)other;
 
         // Check that all fields match (name, count, totalWeight, totalPrice, and description):
+        boolean otherName = this.getName().equals(otherEq.getName());
+        boolean otherCount = this.getCount() == otherEq.getCount();
+        boolean otherWeight = this.getTotalWeight() == otherEq.getTotalWeight();
+        boolean otherPrice = this.getTotalPrice() == otherEq.getTotalPrice();
+        boolean otherDescription = this.getDescription().equals(otherEq.getDescription());
       
         // TODO: finish method
+        return otherName && otherCount && otherWeight && otherPrice && otherDescription;
     }
 }
